@@ -6,6 +6,9 @@ vim.g.maplocalleader = " "
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 
+-- Select all
+vim.keymap.set("n", "<C-A>", "ggVG", { noremap = true, silent = true , desc = "Select all"})
+
 -- Comment configuration
 vim.keymap.set("n", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
 vim.keymap.set("v", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
