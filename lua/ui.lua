@@ -1,5 +1,5 @@
 vim.o.mouse = "a"
-vim.o.wrap = true
+vim.o.wrap = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 

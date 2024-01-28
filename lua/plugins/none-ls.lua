@@ -6,8 +6,6 @@ return {
 			sources = {
 				-- Lua
 				null_ls.builtins.formatting.stylua,
-				-- Python
-				null_ls.builtins.formatting.black,
 			},
 		})
 
