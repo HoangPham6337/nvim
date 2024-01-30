@@ -23,6 +23,7 @@ return {
 				c = {
 					name = "Code",
 					a = { name = "Action", _ = "which_key_ignore" },
+					d = { name = "Diagnostic", _ = "which_key_ignore" }
 				},
 				f = {
 					name = "Fuzzy search",

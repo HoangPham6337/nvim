@@ -15,4 +15,5 @@ local opts = {}
 
 require("ui")
 require("keybind")
+require("functions")
 require("lazy").setup("plugins")

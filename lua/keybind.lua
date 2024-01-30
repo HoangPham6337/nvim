@@ -19,7 +19,7 @@ vim.keymap.set("v", "yy", ":y+<CR>", { noremap = true, silent = true, desc = "Co
 
 -- Create new windows
 vim.keymap.set("n", "<C-N>", ":vsplit<CR><C-w>l", { noremap = true, silent = true, desc = "New window vertical" })
-vim.keymap.set("n", "<C-S-N>", ":split<CR><C-w>l", { noremap = true, silent = true, desc = "New window horizontal" })
+vim.keymap.set("n", "<C-L>", ":split<CR><C-w>l", { noremap = true, silent = true, desc = "New window horizontal" })
 vim.keymap.set("n", "<C-M>", ":close<CR>", { noremap = true, silent = true, desc = "Close window" })
 
 -- Resize windows
@@ -28,3 +28,6 @@ vim.keymap.set("n", "<C-Right>", "<C-w>>", { noremap = true, silent = true , des
 
 -- Cycle between windows
 vim.keymap.set("n", "<S-Tab>", "<C-w>w", { noremap = true, silent = true, desc = "Cycle between window"})
+
+-- Refactor code
+vim.keymap.set("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", { desc = "Rename variable"})

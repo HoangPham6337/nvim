@@ -7,6 +7,10 @@ return {
 				-- Lua
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.beautysh,
+				null_ls.builtins.formatting.clang_format,
+				null_ls.builtins.formatting.google_java_format,
+				null_ls.builtins.diagnostics.cpplint,
+				null_ls.builtins.diagnostics.trivy,
 			},
 		})
 

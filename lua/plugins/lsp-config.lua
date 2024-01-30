@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "jdtls", "marksman", "pyright" },
+				ensure_installed = { "lua_ls", "clangd", "jdtls", "marksman", "pylsp" },
 			})
 		end,
 		opts = {
@@ -37,15 +37,13 @@ return {
 			lspconfig.marksman.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.pylsp.setup({
 				capabilities = capabilities,
 			})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover information about symbol"})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts, { desc = "Go to definition"})
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action"})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover information about symbol"} )
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts, { desc = "Go to definition" } )
+			vim.keymap.set("n", "cd", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" } )
+			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action"} )
 		end,
 	},
 }
