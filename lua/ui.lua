@@ -28,6 +28,11 @@ vim.api.nvim_create_autocmd({
 	group = "NumToggle",
 })
 
+-- Config diagnostic behavior
+vim.diagnostic.config({
+	severity_sort = true,
+})
+
 -- Function to autoconfigure indentation of C file to
 -- conform the PSR-2 standard
 local function set_indentation(spaces)
@@ -39,8 +44,11 @@ end
 
 -- Auto detect C and Cpp files
 vim.api.nvim_create_autocmd({ "Bufread", "BufNewFile" }, {
-	pattern = { "*.c", "*.cpp", "*.h" ,"*.java" },
+	pattern = { "*.c", "*.cpp", "*.h", "*.java" },
 	callback = function()
 		set_indentation(2)
 	end,
 })
+
+-- Set the termguicolors
+vim.opt.termguicolors = true

@@ -8,42 +8,63 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "jdtls", "marksman", "pylsp" },
-			})
+			require("mason-lspconfig").setup({})
 		end,
 		opts = {
 			auto_install = true,
 		},
 	},
 	{
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup({
+				library = {
+					enable = true,
+					plugins = true,
+				},
+			})
+		end,
+	},
+	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local on_attach = function(_, bufnr)
+				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+				vim.keymap.set("n", "cd", function()
+					vim.diagnostic.goto_next({
+						float = { border = "single" },
+					})
+				end, bufopts)
+				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
+			end
+
+			local servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							telemetry = { enable = false },
+							diagnostics = { disable = { "missing-fields" } },
+						},
+					},
+				},
+				clangd = {},
+				jdtls = {},
+				marksman = {},
+				pylsp = {},
+			}
+
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				workspace = { checkthirdparty = false },
-				telemetry = { enable = false },
-				-- note: toggle below to ignore lua_ls's noisy `missing-fields` warnings
-				diagnostics = { disable = { "missing-fields" } },
-				capabilities = capabilities,
-			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.marksman.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.pylsp.setup({
-				capabilities = capabilities,
-			})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover information about symbol"} )
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts, { desc = "Go to definition" } )
-			vim.keymap.set("n", "cd", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" } )
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action"} )
+
+			for server, config in pairs(servers) do
+				config.on_attach = on_attach
+				config.capabilities = capabilities
+				lspconfig[server].setup(config)
+			end
+
 		end,
 	},
 }

@@ -8,12 +8,14 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
+		build = "make install_jsregexp",
 	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			-- Set up nvim-cmp.
 			local cmp = require("cmp")
+			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
@@ -21,6 +23,9 @@ return {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 					end,
+				},
+				completion = {
+					completeopt = "menu, menuone, noinsert",
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
@@ -37,17 +42,21 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.confirm({ select = true })
+						elseif luasnip.expand_or_locally_jumpable() then
+							luasnip.expand_or_jump()
 						else
 							fallback()
 						end
-					end, { "i", "s"}),
+					end, { "i", "s" }),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
 						else
 							fallback()
 						end
-					end, { "i", "s"})
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
@@ -55,6 +64,7 @@ return {
 					{ name = "luasnip" }, -- For luasnip users.
 					-- { name = 'ultisnips' }, -- For ultisnips users.
 					-- { name = 'snippy' }, -- For snippy users.
+					{ name = "path" },
 				}, {
 					{ name = "buffer" },
 				}),

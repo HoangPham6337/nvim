@@ -28,10 +28,12 @@ return {
 				f = {
 					name = "Fuzzy search",
 					g = { name = "Live Grep", _ = "which_key_ignore" },
+					r = { name = "Recent File", _= "which_key_ignore"},
 				},
 				g = {
 					name = "File format",
 					f = { name = "File", _ = "which_key_ignore" },
+					d = { name = "Go to definition", _ = "which_key_ignore" }
 				},
 			},
 		})
