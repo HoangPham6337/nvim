@@ -64,7 +64,6 @@ return {
 				config.capabilities = capabilities
 				lspconfig[server].setup(config)
 			end
-
 		end,
 	},
 }
