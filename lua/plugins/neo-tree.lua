@@ -22,7 +22,7 @@ return {
 			if is_neotree_open then
 				vim.cmd("Neotree close")
 				else
-				vim.cmd("Neotree filesystem reveal left")
+				vim.cmd("Neotree filesystem reveal right")
 			end
 			end, {})
 	end,
