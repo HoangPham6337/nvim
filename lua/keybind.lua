@@ -13,8 +13,8 @@ vim.keymap.set("n", "<C-A>", "ggVG", { noremap = true, silent = true, desc = "Se
 -- vim.keymap.set("n", "gcc", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
 -- vim.keymap.set("v", "gcc", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
 
-vim.keymap.set("n", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
-vim.keymap.set("v", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
+vim.keymap.set("n", "<C-/>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
+vim.keymap.set("v", "<C-/>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
 
 -- Yank to clipboard
 vim.keymap.set("n", "yy", ":y+<CR>", { noremap = true, silent = true, desc = "Copy to clipboard" })
