@@ -8,7 +8,10 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
-			require("mason-lspconfig").setup({})
+			require("mason-lspconfig").setup({
+				-- ensure_installed = {"checkstyle", "clang-format", "clangd", "codespell", "cpplint", "google-java-format", "lua-language-server", "marksman", "mypy", "pyink", "pylint", "python-lsp-server", "shfmt", "stylua", "textlint"}
+				ensure_installed = {"clangd", "pylsp", "jdtls", "lua_ls"}
+			})
 		end,
 		opts = {
 			auto_install = true,
