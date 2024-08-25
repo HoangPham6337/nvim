@@ -9,7 +9,9 @@ return {
 		vim.o.timeoutlen = 300
 	end,
 	config = function()
-		require("which-key").setup()
+		require("which-key").setup({
+			notify = false
+		})
 		local wk = require("which-key")
 		wk.register({
 			["<C-E>"] = { name = "NeoTree", _ = "which_key_ignore" },
