@@ -10,34 +10,33 @@ return {
 	end,
 	config = function()
 		require("which-key").setup({
-			notify = false
+			notify = false,
 		})
 		local wk = require("which-key")
-		wk.register({
-			["<C-E>"] = { name = "NeoTree", _ = "which_key_ignore" },
-			["<C-F>"] = { name = "Search file", _ = "which_key_ignore" },
-			["<C-H>"] = { name = "Search current file", _ = "which_key_ignore" },
-			["g"] = {
-				name = "Word related action",
-				d = { name = "Go to definition" },
-			},
-			["<leader>"] = {
-				c = {
-					name = "Code",
-					a = { name = "Action", _ = "which_key_ignore" },
-					d = { name = "Diagnostic", _ = "which_key_ignore" }
-				},
-				f = {
-					name = "Fuzzy search",
-					g = { name = "Live Grep", _ = "which_key_ignore" },
-					r = { name = "Recent File", _= "which_key_ignore"},
-				},
-				g = {
-					name = "File format",
-					f = { name = "File", _ = "which_key_ignore" },
-					d = { name = "Go to definition", _ = "which_key_ignore" }
-				},
-			},
+		wk.add({
+			{ "<C-E>", group = "NeoTree" },
+			{ "<C-E>_", hidden = true },
+			{ "<C-F>", group = "Search file" },
+			{ "<C-F>_", hidden = true },
+			{ "<C-H>", group = "Search current file" },
+			{ "<C-H>_", hidden = true },
+			{ "<leader>c", group = "Code" },
+			{ "<leader>ca", group = "Action" },
+			{ "<leader>ca_", hidden = true },
+			{ "<leader>cd", group = "Diagnostic" },
+			{ "<leader>cd_", hidden = true },
+			{ "<leader>f", group = "Fuzzy search" },
+			{ "<leader>fg", group = "Live Grep" },
+			{ "<leader>fg_", hidden = true },
+			{ "<leader>fr", group = "Recent File" },
+			{ "<leader>fr_", hidden = true },
+			{ "<leader>g", group = "File format" },
+			{ "<leader>gd", group = "Go to definition" },
+			{ "<leader>gd_", hidden = true },
+			{ "<leader>gf", group = "File" },
+			{ "<leader>gf_", hidden = true },
+			{ "g", group = "Word related action" },
+			{ "gd", group = "Go to definition" },
 		})
 	end,
 }
