@@ -8,20 +8,7 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
-		build = function()
-			local make_cmd = {
-				"C:/Users/hoang/scoop/apps/make/current/bin/make.exe",
-                "install_jsregexp",
-                "CC=gcc.exe",
-                "SHELL=C:/Program Files/Git/usr/bin/sh.exe", -- Adjust this path if needed
-                ".SHELLFLAGS=-c",
-                'NEOVIM_BIN_PATH="C:/Program Files/Neovim/bin"',
-			}
-			vim.fn.system(make_cmd)
-		end,
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
+		build = "make install_jsregexp",
 	},
 	{
 		"hrsh7th/nvim-cmp",

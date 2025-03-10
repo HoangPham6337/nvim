@@ -6,35 +6,59 @@ vim.g.maplocalleader = " "
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 
+local setKeymap = vim.keymap.set
+local options = { noremap = true, silent = true }
+
 -- Select all
-vim.keymap.set("n", "<C-A>", "ggVG", { noremap = true, silent = true, desc = "Select all" })
+setKeymap("n", "<C-A>", "ggVG", options)
 
 -- Comment configuration
--- vim.keymap.set("n", "gcc", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
--- vim.keymap.set("v", "gcc", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
+-- setKeymap("n", "<C-_>", ":CommentToggle<CR>", options)
+-- setKeymap("v", "<C-_>", ":CommentToggle<CR>", options)
+setKeymap("n", "<C-k>", ":CommentToggle<CR>", options)
+setKeymap("v", "<C-k>", ":CommentToggle<CR>", options)
 
-vim.keymap.set("n", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
-vim.keymap.set("v", "<C-_>", ":CommentToggle<CR>", { noremap = true, silent = true, desc = "Toggle comment" })
 
 -- Yank to clipboard
-vim.keymap.set("n", "yy", ":y+<CR>", { noremap = true, silent = true, desc = "Copy to clipboard" })
-vim.keymap.set("v", "yy", ":y+<CR>", { noremap = true, silent = true, desc = "Copy selection to clipboard" })
+setKeymap("n", "yy", ":y+<CR>", options)
+setKeymap("v", "yy", ":y+<CR>", options)
+
+-- nvim-lspconfig
+-- Check lsp-config.lua
+
+-- telescope
+-- Check telescope.lua
+
+-- Neotree
+-- Check neo-tree.lua
+
+-- lsp-lines
+-- setKeymap("n", "<leader>l", require("lsp_lines").toggle)
+-- setKeymap("v", "<leader>l", require("lsp_lines").toggle)
+
+-- Toggle file manager
+setKeymap("n", "-", "<CMD>Oil<CR>")
+
+-- Toogle terminal
+setKeymap("t", "<esc>", [[<C-\><C-n>]], { silent = true })
 
 -- Create new windows
-vim.keymap.set("n", "<C-N>", ":vsplit<CR><C-w>l", { noremap = true, silent = true, desc = "New window vertical" })
-vim.keymap.set("n", "<C-L>", ":split<CR><C-w>l", { noremap = true, silent = true, desc = "New window horizontal" })
-vim.keymap.set("n", "<C-M>", ":close<CR>", { noremap = true, silent = true, desc = "Close window" })
+setKeymap("n", "<C-N>", ":vsplit<CR><C-w>l", options)
+setKeymap("n", "<C-L>", ":split<CR><C-w>l", options)
+setKeymap("n", "<C-M>", ":close<CR>", options)
 
 -- Resize windows
-vim.keymap.set("n", "<C-Left>", "<C-w><", { noremap = true, silent = true, desc = "Decrease window size" })
-vim.keymap.set("n", "<C-Right>", "<C-w>>", { noremap = true, silent = true, desc = "Increase windows size" })
+setKeymap("n", "<C-Left>", "<C-w><", options)
+setKeymap("n", "<C-Right>", "<C-w>>", options)
 
 -- Cycle between windows
-vim.keymap.set("n", "<S-Tab>", "<C-w>w", { noremap = true, silent = true, desc = "Cycle between window" })
+setKeymap("n", "<S-Tab>", "<C-w>w", options)
+
+-- File function
+setKeymap("n", "<leader>gf", vim.lsp.buf.format, options)
 
 -- Refactor code
--- vim.keymap.set("n", "<F2>", ":lua vim.lsp.buf.rename() <CR>", { desc = "Rename variable"})
-vim.keymap.set("n", "<F2>", ":IncRename ")
+setKeymap("n", "<F2>", ":IncRename ")
 
 -- Save
-vim.keymap.set("n", "<C-S>", ":w<CR>", { noremap = true, desc = "Save file" })
+setKeymap("n", "<C-S>", ":w<CR>", { noremap = true })

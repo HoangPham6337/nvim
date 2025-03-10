@@ -6,18 +6,18 @@ return {
 			sources = {
 				-- Lua
 				null_ls.builtins.formatting.stylua, -- Lua
-				null_ls.builtins.formatting.shfmt, -- Bash
+				null_ls.builtins.formatting.shfmt,  -- Bash
 				null_ls.builtins.formatting.clang_format.with({ -- C
 					filetypes = { "c", "cpp" },
 				}),
-				null_ls.builtins.formatting.pyink,  -- Python
+				-- null_ls.builtins.formatting.pyink, -- Python
+				-- null_ls.builtins.diagnostics.mypy.with({
+				-- 	command = { "mypy", "--check-untyped-defs" },
+				-- }),
 				null_ls.builtins.formatting.google_java_format, -- Java
-				-- null_ls.builtins.diagnostics.codespell,
-				-- null_ls.builtins.diagnostics.clangd, -- C
-				-- null_ls.builtins.diagnostics.textlint,
+				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.prettierd
 			},
 		})
-
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 	end,
 }
